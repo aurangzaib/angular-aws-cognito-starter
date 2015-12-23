@@ -16,6 +16,7 @@ angular.module('awsStarterApp')
                     $scope.userName = response.name;
                     AuthService.loginWithFacebook($facebook.getAuthResponse()).then(function(success) {
                         $scope.awsIdentity = success;
+                        console.log("success: ", success);
                     }, function(error) {
                         $scope.isLoggedIn = false;
                         $log.error('Failed to login to facebook with error: ' + error);

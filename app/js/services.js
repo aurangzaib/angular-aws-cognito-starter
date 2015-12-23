@@ -9,14 +9,16 @@ angular.module('awsStarterApp')
             var params;
 
             ConfigFileLoaderService.load('aws-credentials.json').then(function (success) {
+                    console.log("params: " ,success );
                     params = success;
+                    console.log("token: ", authResponse.accessToken);
                     params.Logins = {
-                            "graph.facebook.com": authResponse.accessToken
-                        };
-                    AWS.config.region = 'eu-west-1';
+                        "graph.facebook.com": authResponse.accessToken
+                    };
+                    AWS.config.region = 'ap-northeast-1';
                     // initialize the Credentials object with our parameters
                     AWS.config.credentials = new AWS.CognitoIdentityCredentials(params);
-
+                    console.log(AWS.config.credentials);
 
                     AWS.config.credentials.get(function (err) {
                         if (!err) {
@@ -38,7 +40,7 @@ angular.module('awsStarterApp')
     }]).factory('ConfigFileLoaderService', ['$q', '$http', function ($q, $http) {
         var ConfigFileLoaderService = {};
 
-        ConfigFileLoaderService.load = function(file) {
+        ConfigFileLoaderService.load = function (file) {
             var deferred = $q.defer();
             $http.get(file).success(function (credentials) {
                 deferred.resolve(credentials);

@@ -15,8 +15,11 @@ angular.module('awsStarterApp', ['ngRoute', 'ngFacebook'])
             firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
         }())})
     .config(function ($routeProvider, $facebookProvider) {
-        $facebookProvider.setAppId('YOUR_APP_ID');
-        $facebookProvider.setVersion("v2.2");
+        
+        // settings specific to aurangzaib FB App
+         
+        $facebookProvider.setAppId('203484269993698');
+        $facebookProvider.setVersion("v2.5");
         $routeProvider.when('/', {
             controller: 'MainController',
             templateUrl: 'templates/main.template.html'
